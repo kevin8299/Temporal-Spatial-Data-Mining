@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://E:/opensource/hbase-0.98.9-hadoop1/lib" />
+      <root url="jar://E:/opensource/spark-1.1.1-bin-hadoop2.3/lib/spark-assembly-1.1.1-hadoop2.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://E:/opensource/hbase-0.98.9-hadoop1/lib" />
+      <root url="jar://E:/opensource/spark-1.1.1-bin-hadoop2.3/lib/spark-assembly-1.1.1-hadoop2.3.0.jar!/" />
+    </SOURCES>
+    <jarDirectory url="file://E:/opensource/hbase-0.98.9-hadoop1/lib" recursive="false" />
+    <jarDirectory url="file://E:/opensource/hbase-0.98.9-hadoop1/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>
