@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 /**
  * Created by kevin on 2014/12/24.
+ * Optics algorithm is used to cluster a cluster of 2D points based on density
  */
 
-/**
-  Optics algorithm is used to cluster a cluster of 2D points based on density
- */
 public class Optics {
     private ArrayList<Point> unsortedList;
     private double eps;
@@ -17,7 +15,7 @@ public class Optics {
 
     /**
     * @ Description: Constructor of class Optics
-    * @ Param unsortedList: Input cluster of 2D points
+    * @ Param unsortedList: Input cluster of 2D points required to be clustered
     * @ Param eps: Maximum distance required to get belonging points of some cluster
     * @ Param minPts: Minimum required number of points used to construct some cluster
     * @ Param debug: Debug switch specifically for distance calculation
@@ -32,9 +30,9 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
+    * @ Description: Get the calculated clusters 
     * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Return: The calculated out clusters
     * @ Throws: None
     */
     public ArrayList<ArrayList<Point>> clusters(){
@@ -70,9 +68,9 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
+    * @ Description: Main implementation of Optics alg
     * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Return: The tagged dataset for further clustering
     * @ Throws: None
     */
     public ArrayList<Point> opticsCalc(){
@@ -110,9 +108,11 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
-    * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Description: Calculate the neighbor points around one points
+    * @ Param point: The centered point
+	* @ Param allList: ALl datasets
+	* @ Param eps: The predefined distance to find neighbor points
+    * @ Return: The centered point's neighbors
     * @ Throws: None
     */
     private ArrayList<Point> getNeighbors(Point point, ArrayList<Point> allList, double eps){
@@ -126,9 +126,12 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
-    * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Description: Calculate the core distance of input point
+    * @ Param p: The point to calculate core distance
+	* @ Param allList: All datasets
+	* @ Param eps: The predefined distance to find neighbor points
+	* @ Param minPts: Minimum required number of points used to construct some cluster
+    * @ Return: Calculated out core distance
     * @ Throws: None
     */
     private double calcCoreDist(Point p, ArrayList<Point> allList, double eps, int minPts){
@@ -147,8 +150,13 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
-    * @ Param points: None
+    * @ Description: Calculate the priority queue
+    * @ Param point: The point to update the priority queue
+	* @ Param neighbors: Neighbor points of "point"
+	* @ Param priorityQueue: Priority queue in Optics
+	* @ Param allList: All datasets
+	* @ Param eps: The predefined distance to find neighbor points
+	* @ Param minPts: Minimum required number of points used to construct some cluster
     * @ Return: outline points for the input cluster of 2D points
     * @ Throws: None
     */
@@ -173,9 +181,13 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
-    * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Description: Calculate the distance of 2 points 
+    * @ Param lng1: One point's longitude
+	* @ Param lat1: One point's latitude
+	* @ Param lng2: The other point's longitude
+	* @ Param lat2: The other point's latitude
+	* @ Param debug: Swith for 2 different distance calculation method
+    * @ Return: The calculated out distance of 2 points
     * @ Throws: None
     */
     public static double geoDist(double lng1, double lat1, double lng2, double lat2, Boolean debug){
@@ -201,9 +213,10 @@ public class Optics {
     }
 
     /**
-    * @ Description: Get private "hull" for outside caller
-    * @ Param points: None
-    * @ Return: outline points for the input cluster of 2D points
+    * @ Description: Calculate the distance of 2 points 
+    * @ Param p1: One point
+	* @ Param p2: The other point
+    * @ Return: The calculated out distance of 2 points
     * @ Throws: None
     */
     public static double calcDist(Point p1, Point p2){

@@ -2,14 +2,12 @@ package com.alg.code.java;
 
 /**
  * Created by kevin on 2014/12/25.
+ * Graham algorithm is used to find the outline point of a cluster of 2D points
  */
 
 import java.util.Arrays;
 import java.util.Stack;
 
-/**
-  Graham algorithm is used to find the outline point of a cluster of 2D points
- */
 public class Graham{
     private Stack<Point> hull = new Stack<Point>();  //outline points
 

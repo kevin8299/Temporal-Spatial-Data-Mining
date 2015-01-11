@@ -2,6 +2,8 @@ package com.demo.debug.java;
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is for path related demos, which now mainly give a UI to create 7 different datasets for
+ * path related algorithm test
  */
 
 import java.awt.Graphics;
@@ -21,11 +23,8 @@ public class PathRelatedDemo extends java.applet.Applet //implement MouseListene
     ArrayList<PointD> psAll = new ArrayList<PointD>();
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Applet init function
+     * @ Param: None
      * @ Return: None
      * @ Throws: None
      */
@@ -56,12 +55,10 @@ public class PathRelatedDemo extends java.applet.Applet //implement MouseListene
 */
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Key down handler
+     * @ Param evt: Event passed in
+     * @ Param x: Key value passed in
+     * @ Return: Whether the event is processed
      * @ Throws: None
      */
     public boolean keyDown(Event evt, int x){
@@ -86,12 +83,11 @@ public class PathRelatedDemo extends java.applet.Applet //implement MouseListene
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Mouse down handler
+     * @ Param evt: Event passed in
+     * @ Param x: x coordinate of mouse down position
+     * @ Param y: y coordinate of mouse down position
+     * @ Return: Whether the event is processed
      * @ Throws: None
      */
     public boolean mouseDown(Event evt, int x, int y){
@@ -106,11 +102,8 @@ public class PathRelatedDemo extends java.applet.Applet //implement MouseListene
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
+     * @ Description: Used to update graphics
      * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
      * @ Return: None
      * @ Throws: None
      */
@@ -121,11 +114,8 @@ public class PathRelatedDemo extends java.applet.Applet //implement MouseListene
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Paint the graphics
+     * @ Param g: Graphics handler
      * @ Return: None
      * @ Throws: None
      */

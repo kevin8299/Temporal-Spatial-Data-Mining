@@ -2,6 +2,7 @@ package com.alg.code.scala.PlaceTypeProcess
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is for implementing place related algorithm
  */
 
 import com.util.scala.HBaseHandler
@@ -31,11 +32,9 @@ class PlaceHandler {
   hbHandler.createTable(paTableName, paFamilyName)
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Implement place related algorithm in Spark environment, which now has some problems in 
+					HBase handling and waits to be solved.
+   * @ Param: None
    * @ Return: None
    * @ Throws: None
    */
@@ -59,11 +58,8 @@ class PlaceHandler {
 
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Ordinary implementing for palce related algorithm
+   * @ Param: None
    * @ Return: None
    * @ Throws: None
    */
@@ -114,11 +110,8 @@ class PlaceHandler {
 
   /**
    * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Param oneSet: A set of data point
+   * @ Return: The result contains the area's location info and its corresponding type info
    * @ Throws: None
    */
   def process(oneSet: ArrayList[Point]): (ArrayList[Stack[Point]], ArrayList[Int]) = {
@@ -146,11 +139,8 @@ class PlaceHandler {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Store the function "process" result into HBase
+   * @ Param areaList: Contains the area's location info and its corresponding type info
    * @ Return: None
    * @ Throws: None
    */

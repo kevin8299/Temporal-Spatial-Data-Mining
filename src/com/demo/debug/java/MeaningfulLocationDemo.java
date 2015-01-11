@@ -2,6 +2,7 @@ package com.demo.debug.java;
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is to demonstrate meaningful location extraction
  */
 import java.awt.Graphics;
 import java.awt.Event;
@@ -15,12 +16,15 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
         int px, py;
         ArrayList<PointD> ps = new ArrayList<PointD>();
 
-        static class StayPoint_Debug {
+		/**
+         * This class is meaningful location class
+        */
+        static class MeaningfulLocation_Debug {
             int lng = 0, lat = 0, num = 1;
             long tArr = 0, tLea = 0;
             String info = "";
 
-            StayPoint_Debug(int lng, int lat, long tArr, long tLea) {
+            MeaningfulLocation_Debug(int lng, int lat, long tArr, long tLea) {
                 this.lng = lng;
                 this.lat = lat;
                 this.tArr = tArr;
@@ -36,7 +40,7 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
 
             PointD prev = new PointD();
             ArrayList<PointD> points = new ArrayList<PointD>();
-            ArrayList<StayPoint_Debug> sps = new ArrayList<StayPoint_Debug>();
+            ArrayList<MeaningfulLocation_Debug> sps = new ArrayList<MeaningfulLocation_Debug>();
             int thetaD = 50;
             int thetaT = 1000;
 
@@ -82,7 +86,7 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
                             }
 
                             System.out.println("Computed SP : " + meanLng + " " + meanLat + " " + tArr + " " + tLea);
-                            StayPoint_Debug sp = new StayPoint_Debug(meanLng, meanLat, tArr, tLea);
+                            MeaningfulLocation_Debug sp = new MeaningfulLocation_Debug(meanLng, meanLat, tArr, tLea);
                             sps.add(sp);
                         }
                         prev = d;
@@ -95,16 +99,12 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
                 }
             }
 
-
-    /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
-     * @ Throws: None
-     */
+		/**
+		* @ Description: Applet init function
+		* @ Param: None
+		* @ Return: None
+		* @ Throws: None
+		*/
         public void init(){
             //this.addMouseListener(this);
             System.out.println("init ...");
@@ -131,11 +131,26 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
 	}
 */
 
+		/**
+		* @ Description: Key down handler
+		* @ Param evt: Event passed in
+		* @ Param x: Key value passed in
+		* @ Return: Whether the event is processed
+		* @ Throws: None
+		*/
         public boolean keyDown(Event evt, int x){
             System.out.println("keyDown");
             return true;
         }
-
+		
+		/**
+		* @ Description: Mouse down handler
+		* @ Param evt: Event passed in
+		* @ Param x: x coordinate of mouse down position
+		* @ Param y: y coordinate of mouse down position
+		* @ Return: Whether the event is processed
+		* @ Throws: None
+		*/
         public boolean mouseDown(Event evt, int x, int y){
             System.out.println("mouseDown " + x + " " + y);
             PointD p = new PointD(x, y, evt.when);
@@ -151,13 +166,25 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
             repaint();
             return true;
         }
-
+		
+		/**
+		* @ Description: Used to update graphics
+		* @ Param eps: Maximum distance required to get belonging points of some cluster
+		* @ Return: None
+		* @ Throws: None
+		*/
         public void update(Graphics g){
             g.setColor(Color.black);
             g.fillRect(0, 0, 1000, 1000);
             paint(g);
         }
 
+		/**
+		* @ Description: Paint the graphics
+		* @ Param g: Graphics handler
+		* @ Return: None
+		* @ Throws: None
+		*/
         public void paint(Graphics g){
             g.setColor(Color.red);
             int x = 0, y = 0;
@@ -173,7 +200,7 @@ public class MeaningfulLocationDemo extends java.applet.Applet {    //implement 
 
             for(int i = 0; i < this.sps.size(); i++){
 
-                StayPoint_Debug one = this.sps.get(i);
+                MeaningfulLocation_Debug one = this.sps.get(i);
                 System.out.println("SP: " + one.lng + " " + one.lat);
                 g.drawOval(one.lng - this.thetaD / 2,
                         one.lat - this.thetaD / 2,

@@ -2,18 +2,14 @@ package com.util.scala
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is for tranferring the double time in Geolife dataset to Hour/Minute/Second form
  */
-
 class Time(val tIn: Double){
   val t = tIn - tIn.floor
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Get hour from input data
+   * @ Return: The hour in 24hours format
    * @ Throws: None
    */
   def getHour(): Int = {
@@ -22,12 +18,8 @@ class Time(val tIn: Double){
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Get minute from input data
+   * @ Return: The minute 
    * @ Throws: None
    */
   def getMinute(): Int = {
@@ -36,12 +28,8 @@ class Time(val tIn: Double){
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Get second from input data
+   * @ Return: The second
    * @ Throws: None
    */
   def getSecond(): Int = {
@@ -51,12 +39,8 @@ class Time(val tIn: Double){
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Get the numbers in a week from the input data
+   * @ Return: The numbers in a week
    * @ Throws: None
    */
   def getNum(): Int = {

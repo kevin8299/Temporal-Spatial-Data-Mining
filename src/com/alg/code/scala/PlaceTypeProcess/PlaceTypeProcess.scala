@@ -2,6 +2,7 @@ package com.alg.code.scala.PlaceTypeProcess
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is for extracting the location type, which now is just separated into 4 types, which is listed below
  */
 
 import java.util.ArrayList
@@ -26,12 +27,9 @@ class PlaceTypeProcess(val area: ArrayList[Point]){
   */
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Recognize the type of meaningful location mainly based on activity time span
+   * @ Param: None
+   * @ Return: Area type
    * @ Throws: None
    */
   def typeRecognizer(): Int = {
@@ -93,12 +91,9 @@ class PlaceTypeProcess(val area: ArrayList[Point]){
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Extract the activity time span of the meaningful location 
+   * @ Param: None
+   * @ Return: Arrive and leave time span
    * @ Throws: None
    */
   def timeSpan(): ((ArrayList[Double], ArrayList[Double]), (ArrayList[Double], ArrayList[Double])) = {
@@ -127,11 +122,8 @@ class PlaceTypeProcess(val area: ArrayList[Point]){
 
   /**
    * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Param in: All points in meaningful area 
+   * @ Return: Mean value and variance value of the time span
    * @ Throws: None
    */
   def timeSpanCalc(in: ArrayList[Point]): (ArrayList[Double], ArrayList[Double]) = {
@@ -168,12 +160,9 @@ class PlaceTypeProcess(val area: ArrayList[Point]){
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Calculate mean value and variance value 
+   * @ Param oneSet: Input datasets
+   * @ Return: Mean value and variance value 
    * @ Throws: None
    */
   def calc(oneSet: ArrayList[Double]): (Double, Double) = {
@@ -195,11 +184,8 @@ class PlaceTypeProcess(val area: ArrayList[Point]){
 object PlaceTypeProcess{
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: For unit test of calculating type info of meaningful area
+   * @ Param args: Input options
    * @ Return: None
    * @ Throws: None
    */

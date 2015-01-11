@@ -2,6 +2,9 @@ package com.alg.code.scala
 
 /**
  * Created by kevin on 2014/12/25.
+ * This class is for extracting the location used for some activities for human being, 
+ * which is calculated out purely from temporal spatial datesets and forms the fundamental 
+ * abstraction for further data mining.
  */
 
 import com.util.scala.HBaseHandler
@@ -16,8 +19,8 @@ class MeaningfulLocation(val lat: Double = 0.0,
                           val num: Int = 0) extends Serializable {
 
 
-  val thetaD = 50    //200
-  val thetaT = 1000  //0.02   ---   30 minutes = 0.0208
+  val thetaD = 50    //distance threshhold: 200
+  val thetaT = 1000  //time threshhold: 0.02   ---   30 minutes = 0.0208
 
   val TABLE_STAYPOINT = "sp"
   val FAMILY_STAYPOINT = "record"
@@ -27,23 +30,18 @@ class MeaningfulLocation(val lat: Double = 0.0,
   hbHandler.createTable(TABLE_STAYPOINT, FAMILY_STAYPOINT)
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Constructor of class MeaningfulLocation
+   * @ Param: None
    * @ Return: None
    * @ Throws: None
    */
   def MeaningfulLocation(){}
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Main alg used to calculate the meaningful location
+   * @ Param x: New input point
+   * @ Param y: Cumulated points in one meaningful location
+   * @ Return: New input point or cumulated points
    * @ Throws: None
    */
   def detect(x: String, y: String): String = {
@@ -93,11 +91,8 @@ class MeaningfulLocation(val lat: Double = 0.0,
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Calculate the center location of meaningful location points and store it into HBase
+   * @ Param x: Cumulated points in one meaningful location
    * @ Return: None
    * @ Throws: None
    */
@@ -153,11 +148,9 @@ class MeaningfulLocation(val lat: Double = 0.0,
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: The function is for outside caller to calculate meaningful location
+   * @ Param key: User id 
+   * @ Param data: All points for the user's activity
    * @ Return: None
    * @ Throws: None
    */
@@ -166,15 +159,16 @@ class MeaningfulLocation(val lat: Double = 0.0,
     dataSplit.map(x => key + "_" +x).reduce(detect)
   }
 
-  /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
-   * @ Throws: None
-   */
+    /**
+    * @ Description: Calculate the distance of 2 points 
+    * @ Param lng1: One point's longitude
+	* @ Param lat1: One point's latitude
+	* @ Param lng2: The other point's longitude
+	* @ Param lat2: The other point's latitude
+	* @ Param debug: Swith for 2 different distance calculation method
+    * @ Return: The calculated out distance of 2 points
+    * @ Throws: None
+    */
   def geoDist(lng1: Double, lat1: Double, lng2: Double, lat2: Double, debug: Boolean = true): Double = {
     if (debug) {
       val disX: Double = lng1 - lng2
@@ -198,11 +192,9 @@ class MeaningfulLocation(val lat: Double = 0.0,
 object MeaningfulLocation{
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: The function is for outside caller to calculate meaningful location
+   * @ Param key: User id 
+   * @ Param data: All points for the user's activity
    * @ Return: None
    * @ Throws: None
    */
@@ -211,11 +203,8 @@ object MeaningfulLocation{
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: For unit test of calculating meaningful location
+   * @ Param args: Input options
    * @ Return: None
    * @ Throws: None
    */

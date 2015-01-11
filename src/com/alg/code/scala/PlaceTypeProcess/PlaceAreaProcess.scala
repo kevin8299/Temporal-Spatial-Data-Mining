@@ -7,6 +7,8 @@ import com.demo.debug.java.Clastering2PolygonDemo
 
 /**
  * Created by kevin on 2015/1/2.
+ * This class is for extracting the location used for some activities for human beings in large scale, 
+ * which mainly use Optics alg to cluster meaningful locations for persons personally
  */
 
 class PlaceAreaProcess{
@@ -14,12 +16,9 @@ class PlaceAreaProcess{
   val minPts = 10
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Cluster input meaningful locations to extract large scale activity area
+   * @ Param d: A set of meaningful locations
+   * @ Return: Meaningful areas
    * @ Throws: None
    */
   def clusters(d: ArrayList[Point]): ArrayList[ArrayList[Point]] = {
@@ -33,11 +32,8 @@ class PlaceAreaProcess{
 object PlaceAreaProcess{
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: For unit test of calculating meaningful area
+   * @ Param args: Input options
    * @ Return: None
    * @ Throws: None
    */
@@ -63,12 +59,9 @@ object PlaceAreaProcess{
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: Cluster input meaningful locations to extract large scale activity area
+   * @ Param d: A set of meaningful locations
+   * @ Return: Meaningful areas
    * @ Throws: None
    */
   def testClusters(d: ArrayList[Point]): ArrayList[ArrayList[Point]] = {

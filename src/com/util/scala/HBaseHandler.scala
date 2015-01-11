@@ -2,6 +2,7 @@ package com.util.scala
 
 /**
  * Created by kevin on 2014/12/25.
+ * This class is a set of implementation functions for HBase read and write
  */
 
 import java.io.{IOException, Serializable}
@@ -21,13 +22,11 @@ class HBaseHandler extends Serializable {
   val hTablePool = new HTablePool(c, TablePoolNum)
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Create table in HBase
+   * @ Param tableName: Input table name 
+   * @ Param family: Input family name 
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def createTable(tableName: String, family: String = "location"): Unit = {
     val hAdmin = new HBaseAdmin(c)
@@ -43,11 +42,8 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Delete one table in HBase
+   * @ Param tableName: Input table name 
    * @ Return: None
    * @ Throws: None
    */
@@ -63,13 +59,10 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
-   * @ Throws: None
+   * @ Description: Get the table's  HTableInterface
+   * @ Param tableName: Input table name 
+   * @ Return: HTableInterface for handling
+   * @ Throws: HBaseException
    */
   def getHTable(tableName: String): HTableInterface = {
     var table: HTableInterface = null
@@ -86,13 +79,14 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Add one dataset into one table in HBase
+   * @ Param tableName: Input table name 
+   * @ Param rowKey: Input row key
+   * @ Param family: Input family name 
+   * @ Param qualifier: Input qualifier name 
+   * @ Param value: Input value
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def addRecords(tableName: String, rowKey: String, family: String = "location",
                  qualifier: Array[String], value: Array[String]) {
@@ -111,13 +105,11 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Delete one record in HBase
+   * @ Param tableName: Input table name 
+   * @ Param rowKey: Input row key 
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def delRecord(tableName: String, rowKey: String) {
     val table = getHTable(tableName)
@@ -135,13 +127,11 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Delete one record in HBase
+   * @ Param table: Input HTableInterface
+   * @ Param rowKey: Input row key 
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def delRecord(table: HTableInterface, rowKey: String) {
     try {
@@ -156,13 +146,10 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Delete one table in HBase
+   * @ Param tableName: Input table name 
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def delAllRecord(tableName: String) {
     val allUserBase = getAllRecord(tableName)
@@ -193,13 +180,10 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Close one table in HBase
+   * @ Param table: Input HTableInterface
    * @ Return: None
-   * @ Throws: None
+   * @ Throws: HBaseException
    */
   def closeTable(table: HTableInterface) {
     if (table != null) {
@@ -212,13 +196,11 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
-   * @ Throws: None
+   * @ Description: Get one record from HBase
+   * @ Param table: Input HTableInterface
+   * @ Param rowKey: Input row key 
+   * @ Return: The Result class
+   * @ Throws: HBaseException
    */
   def getOneRecord(tableName: String, rowKey: String): Result = {
     val table = getHTable(tableName)
@@ -235,13 +217,10 @@ class HBaseHandler extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
-   * @ Throws: None
+   * @ Description: Get all records of one table from HBase
+   * @ Param table: Input HTableInterface
+   * @ Return: The ResultScanner class
+   * @ Throws: HBaseException
    */
   def getAllRecord(tableName: String): ResultScanner = {
     val table = getHTable(tableName)

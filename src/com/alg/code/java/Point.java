@@ -2,6 +2,7 @@ package com.alg.code.java;
 
 /**
  * Created by kevin on 2014/12/25.
+ * Point class is used for algorithm of Optics and Gramham
  */
 
 import java.util.Comparator;
@@ -19,23 +20,21 @@ public class Point implements Comparable<Point> {
     private double date = 0;
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Constructor of class Point
+     * @ Param: None
      * @ Return: None
      * @ Throws: None
      */
-    public Point(){
-    }
+    public Point(){}
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Constructor of class Point
+     * @ Param lngIn: Point's longitude
+     * @ Param latIn: Point's latitude
+     * @ Param userIdIn: To whom the point belongs
+     * @ Param tArrIn: The arrive time into the point
+	 * @ Param tLeaIn: The leave time into the point
+	 * @ Param dateIn: Which date the point is created
      * @ Return: None
      * @ Throws: None
      */
@@ -49,27 +48,21 @@ public class Point implements Comparable<Point> {
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Constructor of class Point, used specifically for time density clustering
+     * @ Param lngIn: Point's longitude
+     * @ Param latIn: Point's latitude
      * @ Return: None
      * @ Throws: None
      */
-    //for time density clustring
     public Point(double lngIn, double latIn){
         lng = lngIn;
         lat = latIn;
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Override the "compareTo" function required by "Comparable" 
+     * @ Param that: The point to be compared
+     * @ Return: Compared result
      * @ Throws: None
      */
     @Override
@@ -88,12 +81,11 @@ public class Point implements Comparable<Point> {
     public final Comparator<Point> POLAR_ORDER =  new PolarOrder();
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Help to sort points in the counter clockwise order
+     * @ Param a: One point
+     * @ Param b: The second point
+     * @ Param c: The third point
+     * @ Return: The tag of order for the 3 points
      * @ Throws: None
      */
     public static int counterClockwise(Point a, Point b, Point c){
@@ -106,15 +98,9 @@ public class Point implements Comparable<Point> {
             return 0;
     }
 
-    /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
-     * @ Throws: None
-     */
+	/**
+		This class helps to sort points 
+	*/
     private class PolarOrder implements Comparator<Point> {
         public int compare(Point q1, Point q2){
             double dx1 = q1.getLng() - lng;
@@ -141,11 +127,8 @@ public class Point implements Comparable<Point> {
 
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: The following functions is for outside caller to retrieve dataset
+     * @ Param: None
      * @ Return: None
      * @ Throws: None
      */

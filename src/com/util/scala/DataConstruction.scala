@@ -2,6 +2,7 @@ package com.util.scala
 
 /**
  * Created by kevin on 2014/12/25.
+ * This class is for get the all files specifically for Microsoft Geolife datesets 
  */
 
 import java.io.{File, Serializable}
@@ -37,22 +38,16 @@ class DataConstruction(path: String) extends Serializable {
   }
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
-   * @ Return: None
+   * @ Description: toString
+   * @ Param: None
+   * @ Return: A string
    * @ Throws: None
    */
   override def toString() = "Input Path is " + path
 
   /**
-   * @ Description: Constructor of class Optics
-   * @ Param unsortedList: Input cluster of 2D points
-   * @ Param eps: Maximum distance required to get belonging points of some cluster
-   * @ Param minPts: Minimum required number of points used to construct some cluster
-   * @ Param debug: Debug switch specifically for distance calculation
+   * @ Description: Get all files in the dataset path
+   * @ Param file: The dataset storage path
    * @ Return: None
    * @ Throws: None
    */

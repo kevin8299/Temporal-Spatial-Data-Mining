@@ -2,6 +2,7 @@ package com.demo.debug.java;
 
 /**
  * Created by kevin on 2014/12/25.
+ * This class is for demo 2D points clustering based on density 
  */
 
 import com.alg.code.java.Optics;
@@ -26,12 +27,9 @@ public class Clastering2PolygonDemo extends JFrame {
     ArrayList<Point> result = new ArrayList<Point>();
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Initialize the points datasets
+     * @ Param: None
+     * @ Return: A set of 2D points
      * @ Throws: None
      */
     public static ArrayList<Point> initTestData() {
@@ -62,15 +60,14 @@ public class Clastering2PolygonDemo extends JFrame {
         return out;
     }
 
+	/**
+	* This class is the main showing panel 
+    */
     class Mypanel extends JPanel {
 
-
         /**
-         * @ Description: Constructor of class Optics
-         * @ Param unsortedList: Input cluster of 2D points
-         * @ Param eps: Maximum distance required to get belonging points of some cluster
-         * @ Param minPts: Minimum required number of points used to construct some cluster
-         * @ Param debug: Debug switch specifically for distance calculation
+         * @ Description: Used for panel painting
+         * @ Param g: The Graphics for viewing
          * @ Return: None
          * @ Throws: None
          */
@@ -207,12 +204,9 @@ public class Clastering2PolygonDemo extends JFrame {
 
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Get the center location of 2D points
+     * @ Param data: Input cluster of 2D points
+     * @ Return: the center location
      * @ Throws: None
      */
     public static Point getCentral(ArrayList<Point> data){
@@ -245,12 +239,9 @@ public class Clastering2PolygonDemo extends JFrame {
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
-     * @ Return: None
+     * @ Description: Get the outline points of a set of datasets
+     * @ Param data: A cluster datasets
+     * @ Return: The outline points
      * @ Throws: None
      */
     public static ArrayList<Point> getOutline(ArrayList<Point> data){
@@ -259,11 +250,8 @@ public class Clastering2PolygonDemo extends JFrame {
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Main entry point
+     * @ Param args: Input options
      * @ Return: None
      * @ Throws: None
      */
@@ -272,11 +260,8 @@ public class Clastering2PolygonDemo extends JFrame {
     }
 
     /**
-     * @ Description: Constructor of class Optics
-     * @ Param unsortedList: Input cluster of 2D points
-     * @ Param eps: Maximum distance required to get belonging points of some cluster
-     * @ Param minPts: Minimum required number of points used to construct some cluster
-     * @ Param debug: Debug switch specifically for distance calculation
+     * @ Description: Constructor of class Clastering2PolygonDemo
+     * @ Param: None
      * @ Return: None
      * @ Throws: None
      */
